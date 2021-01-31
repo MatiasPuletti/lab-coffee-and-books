@@ -1,0 +1,27 @@
+{{#with place}}
+<h2>{{ name }}</h2>
+<p>Type: {{ name }} is a {{ type }}</p>
+
+<a href="/place/update/{{ _id }}">Update Place</a>
+<div id="map-container"></div>
+
+
+<script>
+const longitude = {{location.coordinates.[0]}};
+const latitude = {{location.coordinates.[1]}};
+function initMap() {
+  const mapcoord = {lat: latitude, lng: longitude};
+  
+  const map = new window.google.maps.Map(document.getElementById('map-container'), {zoom: 14, center: mapcoord});
+  const marker = new google.maps.Marker({position: mapcoord, map: map});
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0DqXPpPxcJTpR7EvVNsWAUVTKLQZclUw&callback=initMap">
+    </script> 
+
+<form action="/place/delete/{{ _id }}" method="POST" >
+<button >Delete</button>
+</form><br>
+
+{{/with}}  

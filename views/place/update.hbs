@@ -1,0 +1,24 @@
+<h1>Updating {{ place.name }}...</h1>
+
+<form method="POST">
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name" placeholder="Write name" value="{{ place.name }}" required>
+
+<div>
+<label for="bookstore">Type:</label><br>
+
+<input type="radio" id="bookstore" name="type" value="bookstore">
+<label for="bookstore">Bookstore</label><br>
+
+<input type="radio" id="coffee_shop" name="type" value="coffee_shop">
+<label for="coffee_shop">Coffee Shop</label><br>
+</div>
+
+<label for="location">Location</label>
+  <input type="number" placeholder="Latitude" name="latitude" id="location" value="{{ place.location.coordinates.[0] }}">
+  <input type="number" placeholder="Longitude" name="longitude" id="location" value="{{ place.location.coordinates.[1] }}">
+
+<button>Update</button>
+
+</form> 

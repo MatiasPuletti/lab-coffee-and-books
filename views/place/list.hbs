@@ -1,0 +1,57 @@
+<h1>Our Collection of the best places! </h1>
+
+<ul>
+{{#each places}}
+<li><a href="/place/{{_id}}">{{name}}</a> - {{type}}</li>
+{{/each}}
+</ul>
+
+<div id="map-container"></div>
+
+<script>
+  const placeArray = [
+  {{#each places}}
+    {
+      id: "{{_id}}",
+      name:"{{name}}",
+      position: {
+        lat: {{location.coordinates.[1] }},
+        lng: {{ location.coordinates.[0] }}
+      },
+      type: "{{ type }}"
+    },
+  {{/each}}
+]
+console.log(placeArray);
+  function initMap () {
+    const map = new window.google.maps.Map(document.getElementById('map-container'), {
+      center: { lat: 38.75, lng: -9.15 }, zoom: 14});
+    
+       
+    for (let place of placeArray) {
+      let information = `<h1>${place.name}</h1>`+`<p>This place is <b>${place.type}</b></p>`;
+    
+    let infowindow = new google.maps.InfoWindow({
+          content: information
+       });
+      const marker = new google.maps.Marker({
+  position: {
+  	lat: place.position.lat,
+  	lng: place.position.lng
+  },
+  map: map,
+  title: place.name
+});
+marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });  
+marker.addListener('dblclick', () => {
+        const endpoint = `/place/${place.id}`;
+        window.location = endpoint;
+      });
+      console.log(marker);
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0DqXPpPxcJTpR7EvVNsWAUVTKLQZclUw&callback=initMap">
+    </script> 

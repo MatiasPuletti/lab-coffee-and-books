@@ -1,0 +1,22 @@
+<h1>Create Place</h1>
+
+<form method="POST">
+
+<label for="name">Name:</label>
+<input type="text" name="name" id="name" placeholder="Write name" required>
+
+<div>
+  <label for="bookstore">Type:</label><br>
+<input type="radio" required id="bookstore" name="type" value="bookstore">
+<label for="bookstore">Bookstore</label><br>
+<input type="radio" required id="coffee_shop" name="type" value="coffee_shop">
+<label for="coffee-shop">Coffee Shop</label><br>
+</div>
+
+  <label for="latitude-input">Latitude</label>
+  <input required id="latitude-input" type="text" name="latitude" placeholder="Place Latitude">
+
+  <label for="longitude-input">Longitude</label>
+  <input required id="longitude-input" type="text" name="longitude" placeholder="Place Longitude">
+  <button>Create Place</button>
+</form> 
